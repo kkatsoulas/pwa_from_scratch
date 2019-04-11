@@ -73,12 +73,21 @@ async function onLoadAsync() {
     }
 
     //Install the service worker
-    if ('serviceWorker' in navigator) {
+    /*if ('serviceWorker' in navigator) {
         try {
             let serviceWorker = await navigator.serviceWorker.register('./sw.js')
             console.log(`Service worker registered ${serviceWorker}`)
         } catch (err) {
             console.error(`Failed to register service worker: ${err}`)
         }
-    }
+    }*/
+	if ('serviceWorker' in navigator) {
+	  navigator.serviceWorker.register("./sw.js")
+	  .then(function(registration) {
+		console.log('Registration successful, scope is:', registration.scope);
+	  })
+	  .catch(function(error) {
+		console.log('Service worker registration failed, error:', error);
+	  });
+	}
 }
