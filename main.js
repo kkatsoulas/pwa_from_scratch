@@ -42,7 +42,7 @@ async function onOkButtonClickAsync() {
     try {
         const response = await fetch('https://www.ceid.upatras.gr/sites/all/themes/ceid_startupgrowth_lite/logo.png',{
         method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors"})//(API_ANIME + animeId)
+        mode: "no-cors"})//(API_ANIME + animeId)
         if (!response.ok) {
             return
         }
