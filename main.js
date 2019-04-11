@@ -40,7 +40,7 @@ async function onOkButtonClickAsync() {
     let targetElementId = '#main_anime'
     let animeId = document.querySelector("#anime_id_input").value
     try {
-        const response = await fetch(API_ANIME + animeId)
+        const response = await fetch('https://www.ceid.upatras.gr/sites/all/themes/ceid_startupgrowth_lite/logo.png')//(API_ANIME + animeId)
         if (!response.ok) {
             return
         }
