@@ -36,6 +36,7 @@ function addAnimeToHistoryTag(anime) {
 /**
  * loadAnAnime from the internet and place it on a target element
  */
+ /*
 async function onOkButtonClickAsync() {
     let targetElementId = '#main_anime'
     let animeId = document.querySelector("#anime_id_input").value
@@ -45,7 +46,7 @@ async function onOkButtonClickAsync() {
         //if (!response.ok) {
         //    return
         //}
-        const anime = await response.data.json();
+        const anime = await response.data;
         console.log("anime", anime)
         document.querySelector(targetElementId).innerHTML = buildAnimeMarkup(anime)
 
@@ -53,6 +54,29 @@ async function onOkButtonClickAsync() {
     } catch (err) {
         console.error(`error ${err}`)
     }
+}*/
+
+function onOkButtonClickAsync() {
+	let animeId = document.querySelector("#anime_id_input").value
+	let targetElementId = '#main_anime'
+	var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          var response = JSON.parse(request.response);
+          const anime = response;
+		  console.log("anime", anime)
+		  document.querySelector(targetElementId).innerHTML = buildAnimeMarkup(anime)
+
+			updateHistory(anime)
+        }
+      } else {
+        // Return the initial weather forecast since no data is available.
+        //app.updateForecastCard(initialWeatherForecast);
+      }
+    };
+    request.open('GET', API_ANIME + animeId);
+    request.send();
 }
 
 /**
