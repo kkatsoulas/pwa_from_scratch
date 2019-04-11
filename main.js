@@ -1,6 +1,6 @@
 //create an empty array on startup
 let animeHistory = []
-const API_BASE = "https://api.jikan.me/"
+const API_BASE = "https://api.jikan.moe/"
 const API_ANIME = API_BASE + "anime/"
 const HISTORY_STORAGE_KEY = 'HISTORY_KEY'
 
