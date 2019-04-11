@@ -42,10 +42,10 @@ async function onOkButtonClickAsync() {
     try {
         const response = fetch(API_ANIME + animeId,{ // *GET, POST, PUT, DELETE, etc.
         mode: "no-cors"})//(API_ANIME + animeId)
-        if (!response.ok) {
-            return
-        }
-        const anime = await response.json()
+        //if (!response.ok) {
+        //    return
+        //}
+        const anime = await response.data.json();
         console.log("anime", anime)
         document.querySelector(targetElementId).innerHTML = buildAnimeMarkup(anime)
 

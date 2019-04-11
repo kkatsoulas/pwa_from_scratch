@@ -19,7 +19,7 @@ self.addEventListener('activate', function(e) {
   e.waitUntil(
     caches.keys().then(function(keyList) {
       return Promise.all(keyList.map(function(key) {
-        if (key !== cacheName && key !== dataCacheName) {
+        if (key !== cacheName && key !== CACHE_NAME) {
           console.log('[ServiceWorker] Removing old cache', key);
           return caches.delete(key);
         }
@@ -36,6 +36,7 @@ self.addEventListener('activate', function(e) {
  * , we can even make our own response from scratch !
  * Here, we are going to use cache first strategy
  */
+ /*
 self.addEventListener('fetch', event => {
     //We defind the promise (the async code block) that return either the cached response or the network one
     //It should return a response object
@@ -72,4 +73,26 @@ self.addEventListener('fetch', event => {
     //In order to override the default fetch behavior, we must provide the result of our custom behavoir to the
     //event.respondWith method
     event.respondWith(getCustomResponsePromise())
-})
+})*/
+
+
+self.addEventListener('fetch', function(e) {
+  console.log('[Service Worker] Fetch', e.request.url);
+  var dataUrl = 'https://query.yahooapis.com/v1/public/yql';
+    /*
+     * When the request URL contains dataUrl, the app is asking for fresh
+     * weather data. In this case, the service worker always goes to the
+     * network and then caches the response. This is called the "Cache then
+     * network" strategy:
+     * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
+     */
+    e.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return fetch(e.request).then(function(response){
+          cache.put(e.request.url, response.clone());
+          return response;
+        });
+      })
+    );
+
+});
