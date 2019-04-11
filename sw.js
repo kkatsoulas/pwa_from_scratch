@@ -14,6 +14,21 @@ this.addEventListener('install', async function() {
     ])
 })
 
+self.addEventListener('activate', function(e) {
+  console.log('[ServiceWorker] Activate');
+  e.waitUntil(
+    caches.keys().then(function(keyList) {
+      return Promise.all(keyList.map(function(key) {
+        if (key !== cacheName && key !== dataCacheName) {
+          console.log('[ServiceWorker] Removing old cache', key);
+          return caches.delete(key);
+        }
+      }));
+    })
+  );
+    return self.clients.claim();
+});
+  
 /**
  * The fetch event is fired every time the browser sends a request. 
  * In this case, the service worker acts as a proxy. We can for example return the cached

@@ -40,8 +40,7 @@ async function onOkButtonClickAsync() {
     let targetElementId = '#main_anime'
     let animeId = document.querySelector("#anime_id_input").value
     try {
-        const response = await fetch(API_ANIME + animeId,{
-        method: "GET", // *GET, POST, PUT, DELETE, etc.
+        const response = fetch(API_ANIME + animeId,{ // *GET, POST, PUT, DELETE, etc.
         mode: "no-cors"})//(API_ANIME + animeId)
         if (!response.ok) {
             return
