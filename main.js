@@ -40,8 +40,8 @@ async function onOkButtonClickAsync() {
     let targetElementId = '#main_anime'
     let animeId = document.querySelector("#anime_id_input").value
     try {
-        const response = await fetch('https://www.ceid.upatras.gr/sites/all/themes/ceid_startupgrowth_lite/logo.png',{
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        const response = await fetch(API_ANIME + animeId,{
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
         mode: "no-cors"})//(API_ANIME + animeId)
         if (!response.ok) {
             return
@@ -75,7 +75,7 @@ async function onLoadAsync() {
     //Install the service worker
     if ('serviceWorker' in navigator) {
         try {
-            let serviceWorker = await navigator.serviceWorker.register('/sw.js')
+            let serviceWorker = await navigator.serviceWorker.register('./sw.js')
             console.log(`Service worker registered ${serviceWorker}`)
         } catch (err) {
             console.error(`Failed to register service worker: ${err}`)
