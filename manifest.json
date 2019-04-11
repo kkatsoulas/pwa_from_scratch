@@ -1,22 +1,26 @@
 {
-    "name": "PWA from scratch",
-    "short_name": "PWA from 0",
+    "name": "PWA Gallery",
+    "short_name": "PWA Gallery",
     "lang": "gr",
-    "start_url": "./",
-	"scope": "./",
+    "start_url": "/",
+	"scope": "/",
     "display": "standalone",
 	"orientation": "portrait",
     "theme_color": "#c2f442",
+	"background_color": "#EF6C00",
     "icons": [{
             "src": "pwa0-64.png",
+			"type": "image/png",
             "sizes": "64x64"
         },
         {
             "src": "pwa0-128.png",
+			"type": "image/png",
             "sizes": "128x128"
         },
         {
             "src": "pwa0-512.png",
+			"type": "image/png",
             "sizes": "512x512"
         }
     ]
