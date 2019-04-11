@@ -1,9 +1,10 @@
 {
     "name": "PWA from scratch",
     "short_name": "PWA from 0",
-    "lang": "fr",
-    "start_url": "/",
+    "lang": "gr",
+    "start_url": "https://kkatsoulas.github.io/pwa_from_scratch/",
     "display": "standalone",
+	"orientation": "portrait",
     "theme_color": "#c2f442",
     "icons": [{
             "src": "pwa0-64.png",
