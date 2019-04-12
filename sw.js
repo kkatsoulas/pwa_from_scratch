@@ -44,7 +44,7 @@ self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
   var dataUrl = 'https://api.jikan.moe/';
   
-  const cachedResponse
+  //const cachedResponse
   
   if (e.request.url.indexOf(dataUrl) > -1) {
     /*
