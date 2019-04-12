@@ -8,9 +8,9 @@ const HISTORY_STORAGE_KEY = 'HISTORY_KEY'
  * generate gallery tag
  */
 function buildPhotoMarkup(photo) {
-    return `<div class="photo_item"><img class='photo_image' src=${anime.image_url} />
-        <h2 class='photo_name'>${anime.title}</h2>
-        <p class='photo_description'>${anime.aired_string}</p></div>`
+    return `<div class="photo_item"><img class='photo_image' src=${photo.image_url} />
+        <h2 class='photo_name'>${photo.title}</h2>
+        <p class='photo_description'>${photo.aired_string}</p></div>`
 }
 
 /**
