@@ -1,40 +1,40 @@
 //create an empty array on startup
-let animeHistory = []
+let photoHistory = []
 const API_BASE = "https://api.jikan.moe/"
 const API_ANIME = API_BASE + "anime/"
 const HISTORY_STORAGE_KEY = 'HISTORY_KEY'
 
 /**
- * generate anime tag
+ * generate gallery tag
  */
-function buildAnimeMarkup(anime) {
-    return `<div class="anime_item"><img class='anime_image' src=${anime.image_url} />
-        <h2 class='anime_name'>${anime.title}</h2>
-        <p class='anime_description'>${anime.aired_string}</p></div>`
+function buildPhotoMarkup(photo) {
+    return `<div class="photo_item"><img class='photo_image' src=${anime.image_url} />
+        <h2 class='photo_name'>${anime.title}</h2>
+        <p class='photo_description'>${anime.aired_string}</p></div>`
 }
 
 /**
- * add an anime to the history and updates display
+ * add an photo to the history and updates display
  */
-function updateHistory(anime) {
-    animeHistory.push(anime)
+function updateHistory(photo) {
+    photoHistory.push(photo)
 
     //Save the array in the local storage. JSON.stringify allows to serialize the array to a string
-    localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(animeHistory))
+    localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(photoHistory))
 
     //update display
-    addAnimeToHistoryTag(anime)
+    addPhotoToHistoryTag(photo)
 }
 
 /**
  * Update the DOM
  */
-function addAnimeToHistoryTag(anime) {
-    document.querySelector('#history').innerHTML = buildAnimeMarkup(anime) + document.querySelector('#history').innerHTML
+function addPhotoToHistoryTag(photo) {
+    document.querySelector('#history').innerHTML = buildPhotoMarkup(photo) + document.querySelector('#history').innerHTML
 }
 
 /**
- * loadAnAnime from the internet and place it on a target element
+ * loadAnPhoto from the internet and place it on a target element
  */
  /*
 async function onOkButtonClickAsync() {
@@ -57,18 +57,18 @@ async function onOkButtonClickAsync() {
 }*/
 
 function onOkButtonClickAsync() {
-	let animeId = document.querySelector("#anime_id_input").value
-	let targetElementId = '#main_anime'
+	let photoId = document.querySelector("#photo_id_input").value
+	let targetElementId = '#main_photo'
 	var request = new XMLHttpRequest();
     request.onreadystatechange = function() {
       if (request.readyState === XMLHttpRequest.DONE) {
         if (request.status === 200) {
           var response = JSON.parse(request.response);
-          const anime = response;
-		  console.log("anime", anime)
-		  document.querySelector(targetElementId).innerHTML = buildAnimeMarkup(anime)
+          const photo = response;
+		  console.log("photo", photo)
+		  document.querySelector(targetElementId).innerHTML = buildPhotoMarkup(photo)
 
-			updateHistory(anime)
+			updateHistory(photo)
         }
       } else {
         // Return the initial weather forecast since no data is available.
@@ -90,9 +90,9 @@ async function onLoadAsync() {
     //load the history from cache
     let history = getLocalHistory()
     if (history !== null) {
-        //set the animeHistory array and update the display
-        animeHistory = history
-        animeHistory.forEach(anime => addAnimeToHistoryTag(anime))
+        //set the photoHistory array and update the display
+        photoHistory = history
+        photoHistory.forEach(photo => addPhotoToHistoryTag(photo))
     }
 
     //Install the service worker
