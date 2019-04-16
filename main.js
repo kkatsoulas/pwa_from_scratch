@@ -168,9 +168,9 @@ async function onLoadAsync() {
 	}
 }
 
-$("#file_input").change(function () {
+/*$("#file_input").change(function () {
     readURL(this);
-});
+});*/
 
 function readURL(input) {
 
