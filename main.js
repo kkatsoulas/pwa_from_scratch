@@ -56,7 +56,8 @@ async function onOkButtonClickAsync() {
     }
 }*/
 
-function onOkButtonClickAsync() {
+function onOkButtonClickAsync2() {
+	
 	let photoId = document.querySelector("#photo_id_input").value
 	let targetElementId = '#main_photo'
 	var request = new XMLHttpRequest();
@@ -77,6 +78,58 @@ function onOkButtonClickAsync() {
     };
     request.open('GET', API_ANIME + animeId);
     request.send();
+}
+
+function onOkButtonClickAsync() {
+	
+	let photoId = document.querySelector("#photo_id_input").value
+	let targetElementId = '#main_photo'
+	var files = $("#file_input").get(0).files;
+
+		for (var i = 0; i < $("#file_input").get(0).files.length; i++) {
+			const fileRef = firebase.storage().ref().child('mapImages/' + image_name);
+			var uploadTask = fileRef.put(files[i], metadata);
+			break;
+		}
+		
+		uploadTask.on('state_changed', function(snapshot){
+		// Observe state change events such as progress, pause, and resume
+		// See below for more detail
+	}, function(error) {
+		// Handle unsuccessful uploads
+	}, function() {
+	var downloadURL = uploadTask.snapshot.downloadURL;
+	var Category_txt = '';
+	var SubCategory_txt = '';
+	uploadTask.snapshot.ref.getDownloadURL().then(function (URL) {
+   //getting the publication time
+		var dayObj = new Date();
+		var day = dayObj.getDate();
+		
+		dbObjRef.child(PostsRootName).push({
+		CreatedBy: 'Kostas',
+		lat: '',
+		lng: '',
+		ImageURL: URL,
+		SourceURL: src_url,
+		Category: Category_txt,
+		SubCategory: SubCategory_txt,
+		Comment: '',
+		Status: 'ΚΑΤΑΧΩΡΗΘΗΚΕ',
+		Image: src_url
+		});
+
+		console.log('User post successfully added to realtime database');
+	});
+	
+	// Handle successful uploads on complete
+	// For instance, get the download URL: https://firebasestorage.googleapis.com/...
+	//$(".upload-group")[0].before("Success!");
+	//$(".upload-group").hide();
+	//ConvertMarkerPreview();
+
+	});
+
 }
 
 /**
@@ -113,4 +166,22 @@ async function onLoadAsync() {
 		console.log('Service worker registration failed, error:', error);
 	  });
 	}
+}
+
+$("#file_input").change(function () {
+    readURL(this);
+});
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        /*reader.onload = function (e) {
+            $('.img_uploaded').attr('src', e.target.result);
+            $('.img_uploaded').show();
+        }
+
+        reader.readAsDataURL(input.files[0]);*/
+    }
 }

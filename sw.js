@@ -5,6 +5,7 @@ const staticFiles = [
 		'/index.html',
         '/main.css',
         '/main.js',
+		'/firebase.js',
 ];
 
 
