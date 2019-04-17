@@ -17,12 +17,7 @@ const staticFiles = [
 */
 this.addEventListener('install', async function() {
     const cache = await caches.open(CACHE_NAME);
-    cache.addAll([
-        '/',
-		'/index.html',
-        '/main.css',
-        '/main.js',
-    ])
+    cache.addAll(staticFiles)
 })
 
 self.addEventListener('activate', function(e) {
