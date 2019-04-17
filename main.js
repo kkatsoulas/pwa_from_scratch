@@ -127,7 +127,6 @@ function onOkButtonClickAsync() {
 		lat: '',
 		lng: '',
 		ImageURL: URL,
-		SourceURL: src_url,
 		Category: Category_txt,
 		SubCategory: SubCategory_txt,
 		Comment: '',
