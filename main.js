@@ -121,18 +121,25 @@ function onOkButtonClickAsync() {
    //getting the publication time
 		var dayObj = new Date();
 		var day = dayObj.getDate();
+		var photoLine = {
+						  CreatedBy: 'Kostas',
+						  RequestID:"",
+						  RequestDate:"",
+						  Category: Category_txt,
+						  SubCategory:SubCategory_txt,
+						  Address:"",
+						  Status:"",
+						  image_url:URL,
+						  title:"",
+						  aired_string:"",
+						  lat: '',
+						  lng: '',
+						  Status: 'ΚΑΤΑΧΩΡΗΘΗΚΕ'
+						};
 		
-		dbObjRef.child(PostsRootName).push({
-		CreatedBy: 'Kostas',
-		lat: '',
-		lng: '',
-		ImageURL: URL,
-		Category: Category_txt,
-		SubCategory: SubCategory_txt,
-		Comment: '',
-		Status: 'ΚΑΤΑΧΩΡΗΘΗΚΕ',
-		Image: src_url
-		});
+						
+		dbObjRef.child(PostsRootName).push(photoLine);
+		updateHistory(photoLine);
 
 		console.log('User post successfully added to realtime database');
 	});
