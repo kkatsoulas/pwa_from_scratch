@@ -66,10 +66,12 @@ self.addEventListener('fetch', function(e) {
      */
     e.respondWith(
       caches.match(e.request).then(function(response) {
-        return response || fetch(e.request).then(function(response){
-          caches.put(e.request.url, response.clone());
-          return response;
-        });
+        return response || caches.open(CACHE_NAME).then(function(cache) {
+			return fetch(e.request).then(function(response){
+			  cache.put(e.request.url, response.clone());
+			  return response;
+			});
+		  })
       })
     );
   }
