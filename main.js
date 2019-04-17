@@ -84,6 +84,14 @@ function onOkButtonClickAsync() {
 	
 	let photoId = document.querySelector("#photo_id_input").value
 	let targetElementId = '#main_photo'
+	var currentDt = new Date();
+	var mm = currentDt.getMonth() + 1;
+	var dd = currentDt.getDate();
+	var yyyy = currentDt.getFullYear();
+	var s = currentDt.getSeconds();
+	var m = currentDt.getMinutes();
+	var h = currentDt.getHours();
+	const image_name = mm + '-' + dd + '-' + yyyy+"-"+h+"-"+m+"-"+s;
 	var files = $("#file_input").get(0).files;
 
 		for (var i = 0; i < $("#file_input").get(0).files.length; i++) {
