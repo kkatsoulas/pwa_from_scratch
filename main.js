@@ -91,6 +91,14 @@ function onOkButtonClickAsync() {
 	var s = currentDt.getSeconds();
 	var m = currentDt.getMinutes();
 	var h = currentDt.getHours();
+	var metadata = {
+			contentType: 'image',
+			customMetadata: {
+				//'uploadedBy': global_user.uid,
+				//'latitude': marker.getPosition().lat(),
+				//'longitude': marker.getPosition().lng()
+			},
+		};
 	const image_name = mm + '-' + dd + '-' + yyyy+"-"+h+"-"+m+"-"+s;
 	var files = $("#file_input").get(0).files;
 
