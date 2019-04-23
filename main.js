@@ -103,7 +103,7 @@ function onOkButtonClickAsync() {
 			},
 		};
 	const image_name = mm + '-' + dd + '-' + yyyy+"-"+h+"-"+m+"-"+s;
-	const display_name = namedMonth + dd + ',' + yyyy+ ' ' + h+":"+ m + ":" +s;
+	const display_name = namedMonth + (dd < 10? "0": "") + dd + ',' + yyyy+ ' ' + (h < 10? "0": "") + h+":"+ (m < 10? "0": "") + m;
 	var files = $("#file_input").get(0).files;
 
 		for (var i = 0; i < $("#file_input").get(0).files.length; i++) {
