@@ -176,7 +176,7 @@ async function onLoadAsync() {
 		//set data from firebase
 		routeRef2.once("value")
 		  .then(function(snapshot) {
-			snapshot.forEach(photo => addPhotoToHistoryTag(photo));
+			snapshot.forEach(photo => addPhotoToHistoryTag(photo.val()));
 		});
 	}
 
