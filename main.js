@@ -84,6 +84,8 @@ function onOkButtonClickAsync() {
 	
 	let photoId = document.querySelector("#photo_id_input").value
 	let targetElementId = '#main_photo'
+	var months = ["January", "February", "March", "April", "May", "June", "July",
+         "August", "September", "October", "November", "December"];
 	var currentDt = new Date();
 	var mm = currentDt.getMonth() + 1;
 	var dd = currentDt.getDate();
@@ -91,6 +93,7 @@ function onOkButtonClickAsync() {
 	var s = currentDt.getSeconds();
 	var m = currentDt.getMinutes();
 	var h = currentDt.getHours();
+	var namedMonth = months[currentDt.getMonth()];
 	var metadata = {
 			contentType: 'image',
 			customMetadata: {
@@ -100,6 +103,7 @@ function onOkButtonClickAsync() {
 			},
 		};
 	const image_name = mm + '-' + dd + '-' + yyyy+"-"+h+"-"+m+"-"+s;
+	const display_name = namedMonth + dd + ',' + yyyy+ ' ' + h+":"+ m + ":" +s;
 	var files = $("#file_input").get(0).files;
 
 		for (var i = 0; i < $("#file_input").get(0).files.length; i++) {
@@ -128,10 +132,10 @@ function onOkButtonClickAsync() {
 						  Category: Category_txt,
 						  SubCategory:SubCategory_txt,
 						  Address:"",
-						  Status:"Added by Kostas",
+						  Status:"",
 						  image_url:URL,
-						  title:"",
-						  aired_string: image_name,
+						  title:"Added by Kostas",
+						  aired_string: display_name,
 						  lat: '',
 						  lng: '',
 						  Status: 'ΚΑΤΑΧΩΡΗΘΗΚΕ'
