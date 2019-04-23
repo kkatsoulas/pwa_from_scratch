@@ -172,7 +172,13 @@ async function onLoadAsync() {
         //set the photoHistory array and update the display
         photoHistory = history
         photoHistory.forEach(photo => addPhotoToHistoryTag(photo))
-    }
+    }else{
+		//set data from firebase
+		routeRef2.once("value")
+		  .then(function(snapshot) {
+			snapshot.forEach(photo => addPhotoToHistoryTag(photo));
+		});
+	}
 
     //Install the service worker
     /*if ('serviceWorker' in navigator) {
