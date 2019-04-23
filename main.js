@@ -82,7 +82,7 @@ function onOkButtonClickAsync2() {
 
 function onOkButtonClickAsync() {
 	
-	let photoId = document.querySelector("#photo_id_input").value
+	//let photoId = document.querySelector("#photo_id_input").value
 	let targetElementId = '#main_photo'
 	var months = ["January", "February", "March", "April", "May", "June", "July",
          "August", "September", "October", "November", "December"];
